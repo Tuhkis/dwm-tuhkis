@@ -3,13 +3,15 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const int startwithgaps	     = 1;	 /* 1 means gaps are used by default */
-static const unsigned int gappx     = 10;       /* default gap between windows in pixels */
+static const unsigned int gappx     = 6;       /* default gap between windows in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "FiraCode Nerd Font:size=12" };
+static const char *fonts[]          = { "FiraCode Nerd Font:size=14" };
 static const char dmenufont[]       = "monospace:size=10";
 
+#define ALL_BLACK
+#ifndef ALL_BLACK
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -25,9 +27,26 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_fg, col_bg,  col_gray2 },
 	[SchemeSel]  = { col_white, col_bg,  col_cyan  },
 };
+#else
+static const char col_gray1[]       = "#222222";
+static const char col_gray2[]       = "#444444";
+static const char col_gray3[]       = "#999999";
+static const char col_gray4[]       = "#b9b9b9";
+static const char col_cyan[]        = "#80aaff";
+
+static const char col_bg[]          = "#000000";
+static const char col_fg[]          = "#ffffff";
+static const char col_white[]       = "#ffffff";
+
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_fg, col_bg,  col_gray2 },
+	[SchemeSel]  = { col_white, col_bg,  col_cyan  },
+};
+#endif // ALL_BLACK
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "󰬺", "󰬻", "󰬼", "󰬽", "󰬾", "󰬿", "󰭀", "󰭁", "󰭂" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -113,7 +132,7 @@ static const Key keys[] = {
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
-	/* click                event mask      button          function        argument */
+	// click                event mask      button          function        argument
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
